@@ -66,6 +66,13 @@ namespace Alipay.EasySDK.Kernel
         public string AlipayCertPath { get; set; }
 
         /// <summary>
+        /// 支付宝备用公钥证书文件路径
+        /// </summary>
+        [NameInMap("alipayCertBackupPath")]
+        [Validation(Required = true)]
+        public string AlipayBackupCertPath { get; set; }
+
+        /// <summary>
         /// 支付宝根证书文件路径
         /// </summary>
         [NameInMap("alipayRootCertPath")]

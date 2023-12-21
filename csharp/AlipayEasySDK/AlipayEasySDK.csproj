@@ -27,6 +27,9 @@
     <Folder Include="Factory\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AlipayEasySDK.Kernel" Version="1.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\kernel\csharp\EasySDKKernel\EasySDKKernel.csproj" />
   </ItemGroup>
 </Project>

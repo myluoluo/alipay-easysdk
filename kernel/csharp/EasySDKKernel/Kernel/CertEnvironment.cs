@@ -58,6 +58,21 @@ namespace Alipay.EasySDK.Kernel
             CachedAlipayPublicKey[alipayCertSN] = alipayPublicKey;
         }
 
+        /// <summary>
+        /// 附加一张证书，可以用于支付宝证书过度阶段
+        /// </summary>
+        /// <param name="alipayCertPath">支付宝公钥证书路径</param>
+        /// <returns>附加的证书SN</returns>
+        public string ApplyAlipayCert(string alipayCertPath)
+        {
+            X509Certificate alipayCert = AntCertificationUtil.ParseCert(File.ReadAllText(alipayCertPath));
+            string alipayCertSN = AntCertificationUtil.GetCertSN(alipayCert);
+            if (CachedAlipayPublicKey.ContainsKey(alipayCertPath)) throw new Exception($"附加的证书 [{alipayCertSN}] 已存在");
+            string alipayPublicKey = AntCertificationUtil.ExtractPemPublicKeyFromCert(alipayCert);
+            CachedAlipayPublicKey[alipayCertSN] = alipayPublicKey;
+            return alipayCertSN;
+        }
+
         public string GetAlipayPublicKey(string sn)
         {
             //如果没有指定sn，则默认取缓存中的第一个值

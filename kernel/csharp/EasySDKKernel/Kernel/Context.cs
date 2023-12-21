@@ -35,6 +35,10 @@ namespace Alipay.EasySDK.Kernel
                         GetConfig(AlipayConstants.MERCHANT_CERT_PATH_CONFIG_KEY),
                         GetConfig(AlipayConstants.ALIPAY_CERT_PATH_CONFIG_KEY),
                         GetConfig(AlipayConstants.ALIPAY_ROOT_CERT_PATH_CONFIG_KEY));
+
+                // 如果設置了備用證書，則附加
+                if (!string.IsNullOrEmpty(config.AlipayBackupCertPath))
+                    CertEnvironment.ApplyAlipayCert(config.AlipayBackupCertPath);
             }
         }
 
